@@ -232,7 +232,7 @@ function App() {
       });
       Cesium.GeoJsonDataSource.clampToGround = true;
 
-      var promise = Cesium.GeoJsonDataSource.load("/data/neubau.json", {
+      var promise = Cesium.GeoJsonDataSource.load("/data/neubauWH.json", {
         clampToGround: true,
       });
       promise.then(function (dataSource) {
@@ -246,7 +246,7 @@ function App() {
           console.log("entity", entity);
 
           //Extrude the polygon based on any attribute you desire
-          //entity.polygon.extrudedHeight = 160 + 25; //entity.properties.parent_id;
+          entity.polygon.extrudedHeight = 160 + 25; //entity.properties.parent_id;
           entity.polygon.classificationType =
             Cesium.ClassificationType.CESIUM_3D_TILE;
           entity.polygon.outline = false;
