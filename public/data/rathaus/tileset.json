@@ -1,0 +1,724 @@
+{
+	"asset" : {
+		"version" : "1.0"
+	},
+	"properties" : {
+		"timestamp" : {},
+		"version" : {},
+		"changeset" : {},
+		"name" : {},
+		"operator" : {},
+		"ref" : {},
+		"route" : {},
+		"type" : {},
+		"wikidata" : {},
+		"wikipedia" : {},
+		"id" : {},
+		"maintenance" : {},
+		"network" : {},
+		"website" : {},
+		"from" : {},
+		"network:wikidata" : {},
+		"network:wikipedia" : {},
+		"opening_hours" : {},
+		"operator:wikidata" : {},
+		"public_transport:version" : {},
+		"to" : {},
+		"dog" : {},
+		"fee" : {},
+		"interval" : {},
+		"operator:wikipedia" : {},
+		"service" : {},
+		"toilets" : {},
+		"via" : {},
+		"colour" : {},
+		"destination" : {},
+		"name:ar" : {},
+		"ref:fgkz" : {},
+		"short_name:ar" : {},
+		"waterway" : {},
+		"note" : {},
+		"start_date" : {},
+		"line" : {},
+		"wikimedia_commons" : {},
+		"air_conditioning" : {},
+		"height" : {},
+		"passenger" : {},
+		"surveillance" : {},
+		"surveillance:type" : {},
+		"toilets:wheelchair" : {},
+		"power_supply" : {},
+		"socket:schuko" : {},
+		"timetable" : {},
+		"operator:short" : {},
+		"wheelchair:description" : {},
+		"boundary" : {},
+		"postal_code" : {},
+		"postal_code_level" : {},
+		"url" : {},
+		"smoking" : {},
+		"note:de" : {},
+		"note:osm" : {},
+		"long_name" : {},
+		"by_night" : {},
+		"description" : {},
+		"railway" : {},
+		"cycle_highway" : {},
+		"int_name" : {},
+		"rail_trail:website" : {},
+		"route:rail_trail" : {},
+		"state" : {},
+		"fixme" : {},
+		"area" : {},
+		"highway" : {},
+		"lit" : {},
+		"place" : {},
+		"surface" : {},
+		"changing_table" : {},
+		"internet_access" : {},
+		"internet_access:fee" : {},
+		"operator:type" : {},
+		"access" : {},
+		"amenity" : {},
+		"building" : {},
+		"building:levels" : {},
+		"layer" : {},
+		"parking" : {},
+		"source" : {},
+		"leisure" : {},
+		"water" : {},
+		"natural" : {},
+		"addr:city" : {},
+		"addr:country" : {},
+		"addr:housenumber" : {},
+		"addr:postcode" : {},
+		"addr:street" : {},
+		"addr:suburb" : {},
+		"wheelchair" : {},
+		"brand" : {},
+		"brand:wikidata" : {},
+		"brand:wikipedia" : {},
+		"covered" : {},
+		"landuse" : {},
+		"heritage" : {},
+		"heritage:operator" : {},
+		"image" : {},
+		"loc_name" : {},
+		"old_name" : {},
+		"ref:Wuppertal" : {},
+		"year_of_construction" : {},
+		"alt_name" : {},
+		"microbrewery" : {},
+		"fax" : {},
+		"phone" : {},
+		"school" : {},
+		"contact:fax" : {},
+		"contact:phone" : {},
+		"contact:website" : {},
+		"roof:levels" : {},
+		"roof:shape" : {},
+		"maxstay" : {},
+		"supervised" : {},
+		"denomination" : {},
+		"religion" : {},
+		"deanery" : {},
+		"diocese" : {},
+		"parish" : {},
+		"service_times" : {},
+		"email" : {},
+		"office" : {},
+		"social_facility" : {},
+		"tourism" : {},
+		"building:architecture" : {},
+		"contact:youtube" : {},
+		"abandoned" : {},
+		"atm" : {},
+		"bic" : {},
+		"internet_access:operator" : {},
+		"internet_access:ssid" : {},
+		"clothes" : {},
+		"level" : {},
+		"payment:cash" : {},
+		"shop" : {},
+		"capacity" : {},
+		"power" : {},
+		"substation" : {},
+		"voltage" : {},
+		"shelter_type" : {},
+		"FIXME" : {},
+		"building:part" : {},
+		"man_made" : {},
+		"tower:type" : {},
+		"building:material" : {},
+		"bridge" : {},
+		"building:min_level" : {},
+		"bridge:structure" : {},
+		"capacity:disabled" : {},
+		"electrified" : {},
+		"frequency" : {},
+		"gauge" : {},
+		"maxspeed" : {},
+		"passenger_lines" : {},
+		"railway:etcs" : {},
+		"railway:gnt" : {},
+		"railway:lzb" : {},
+		"railway:pzb" : {},
+		"usage" : {},
+		"workrules" : {},
+		"lanes" : {},
+		"lanes:backward" : {},
+		"lanes:forward" : {},
+		"sidewalk" : {},
+		"cycleway:right" : {},
+		"maxspeed:type" : {},
+		"oneway" : {},
+		"turn:lanes" : {},
+		"change:lanes:backward" : {},
+		"cycleway:both" : {},
+		"placement" : {},
+		"turn:lanes:backward" : {},
+		"oneway:bicycle" : {},
+		"foot" : {},
+		"horse" : {},
+		"width" : {},
+		"bicycle" : {},
+		"segregated" : {},
+		"abandoned:ref" : {},
+		"class:bicycle" : {},
+		"motor_vehicle" : {},
+		"official_name" : {},
+		"abandoned:name" : {},
+		"abandoned:railway" : {},
+		"lane_markings" : {},
+		"incline" : {},
+		"cycleway" : {},
+		"handrail" : {},
+		"ramp" : {},
+		"ramp:stroller" : {},
+		"step_count" : {},
+		"tunnel" : {},
+		"footway" : {},
+		"maxheight" : {},
+		"turn:lanes:forward" : {},
+		"zone:traffic" : {},
+		"surface:left" : {},
+		"surface:middle" : {},
+		"surface:right" : {},
+		"vehicle" : {},
+		"tracks" : {},
+		"monorail" : {},
+		"long_name:ar" : {},
+		"railway:radio" : {},
+		"noname" : {},
+		"smoothness" : {},
+		"bus" : {},
+		"lanes:psv" : {},
+		"maxweight" : {},
+		"check_date" : {},
+		"government" : {},
+		"reservation" : {},
+		"charge" : {},
+		"park_ride" : {},
+		"tactile_paving" : {},
+		"bicycle:forward" : {},
+		"motor_vehicle:backward:conditional" : {},
+		"name:uk" : {},
+		"traffic_sign:forward" : {},
+		"maxspeed:conditional" : {},
+		"motor_vehicle:conditional" : {},
+		"capacity:women" : {},
+		"railway:bidirectional" : {},
+		"cycleway:surface" : {},
+		"abandoned:building" : {},
+		"change:lanes" : {},
+		"razed:building" : {},
+		"removed:building" : {},
+		"demolished:building" : {},
+		"placement:forward" : {},
+		"cycleway:left" : {},
+		"cycleway:left:lane" : {},
+		"de:strassenschluessel_exists" : {},
+		"public_transport" : {},
+		"ref:IFOPT" : {},
+		"shelter" : {},
+		"local_ref" : {},
+		"cycleway:right:lane" : {},
+		"indoor" : {},
+		"boat" : {},
+		"embankment" : {},
+		"construction" : {},
+		"construction:note" : {},
+		"location" : {},
+		"barrier" : {},
+		"parking:lane:left" : {},
+		"parking:lane:right" : {},
+		"parking:lane:right:parallel" : {},
+		"parking:lane:both" : {},
+		"kerb" : {},
+		"crossing" : {},
+		"button_operated" : {},
+		"traffic_signals:sound" : {},
+		"traffic_signals:vibration" : {},
+		"crossing:island" : {},
+		"crossing_ref" : {},
+		"traffic_signals:arrow" : {},
+		"sloped_curb" : {},
+		"bridge:support" : {},
+		"traffic_calming" : {},
+		"cuisine" : {},
+		"delivery" : {},
+		"takeaway" : {},
+		"drive_through" : {},
+		"check_date:opening_hours" : {},
+		"historic" : {},
+		"shelter:check_date" : {},
+		"bench" : {},
+		"bin" : {},
+		"departures_board" : {},
+		"waste_basket" : {},
+		"entrance" : {},
+		"bollard" : {},
+		"collection_times" : {},
+		"recycling_type" : {},
+		"recycling:books" : {},
+		"recycling:paper" : {},
+		"recycling:shoes" : {},
+		"recycling:cartons" : {},
+		"recycling:clothes" : {},
+		"recycling:cardboard" : {},
+		"recycling:magazines" : {},
+		"recycling:newspaper" : {},
+		"recycling:glass_bottles" : {},
+		"recycling:small_electrical_appliances" : {},
+		"direction" : {},
+		"wheelchair:check_date" : {},
+		"noexit" : {},
+		"door" : {},
+		"automatic_door" : {},
+		"abandoned:shop" : {},
+		"abandoned:opening_hours" : {},
+		"disused:amenity" : {},
+		"trailer" : {},
+		"removed:amenity" : {},
+		"removed:covered" : {},
+		"removed:operator" : {},
+		"removed:payment:coins" : {},
+		"bicycle_parking" : {},
+		"bicycle_parking:check_date" : {},
+		"check_date:capacity" : {},
+		"backrest" : {},
+		"information" : {},
+		"diet:kosher" : {},
+		"diet:vegan" : {},
+		"traffic_signals:direction" : {},
+		"contact:facebook" : {},
+		"diet:vegetarian" : {},
+		"artwork_type" : {},
+		"recycling:electrical_items" : {},
+		"sms" : {},
+		"video" : {},
+		"display" : {},
+		"language:de" : {},
+		"language:en" : {},
+		"language:fr" : {},
+		"payment:coins" : {},
+		"payment:others" : {},
+		"language:others" : {},
+		"payment:telephone_cards" : {},
+		"advertising" : {},
+		"material" : {},
+		"post_box:type" : {},
+		"antenna" : {},
+		"antenna:type" : {},
+		"callable" : {},
+		"communication:mobile_phone" : {},
+		"description:de" : {},
+		"description:payment" : {},
+		"model" : {},
+		"payment:calling_cards" : {},
+		"payment:reverse_charge_calls" : {},
+		"ref:housenumber" : {},
+		"ref:street" : {},
+		"drive_in" : {},
+		"outdoor_seating" : {},
+		"abandoned:amenity" : {},
+		"disused:shop" : {},
+		"opening_hours:url" : {},
+		"vending" : {},
+		"artist_name" : {},
+		"dispensing" : {},
+		"healthcare" : {},
+		"short_name" : {},
+		"board_type" : {},
+		"brand_1" : {},
+		"healthcare:speciality" : {},
+		"opening_hours:signed" : {},
+		"sport" : {},
+		"changing_table:location" : {},
+		"payment:girocard" : {},
+		"xmas:url" : {},
+		"xmas:name" : {},
+		"xmas:feature" : {},
+		"xmas:day_date" : {},
+		"xmas:opening_hours" : {},
+		"tickets:public_transport" : {},
+		"ashtray" : {},
+		"health_person:type" : {},
+		"health_facility:type" : {},
+		"medical_system:western" : {},
+		"health_specialty:orthopaedics" : {},
+		"drink:coffee" : {},
+		"leaf_type" : {},
+		"leaf_cycle" : {},
+		"memorial" : {},
+		"memorial:type" : {},
+		"organic" : {},
+		"date" : {},
+		"faces" : {},
+		"support" : {},
+		"barometer" : {},
+		"hygrometer" : {},
+		"visibility" : {},
+		"thermometer" : {},
+		"traffic_sign" : {},
+		"fee:amount" : {},
+		"disused:operator" : {},
+		"opening_hours:covid19" : {},
+		"craft" : {},
+		"fair_trade" : {},
+		"blind:description:de" : {},
+		"payment:notes" : {},
+		"mofa" : {},
+		"moped" : {},
+		"motorcycle" : {},
+		"club" : {},
+		"name:signed" : {},
+		"post_office" : {},
+		"service:fax" : {},
+		"service:copy" : {},
+		"post_office:brand" : {},
+		"inscription" : {},
+		"person:date_of_death" : {},
+		"waste" : {},
+		"operator:abbr" : {},
+		"clothes:men" : {},
+		"street_cabinet" : {},
+		"vrr:wabe" : {},
+		"emergency" : {},
+		"source:position" : {},
+		"fire_hydrant:type" : {},
+		"emergency:check_date" : {},
+		"fire_hydrant:type:check_date" : {},
+		"amperage" : {},
+		"authentication:membership_card" : {},
+		"authentication:nfc" : {},
+		"motorcar" : {},
+		"scooter" : {},
+		"socket:type2" : {},
+		"min_age" : {},
+		"payment:ep_geldkarte" : {},
+		"self_service" : {},
+		"bar" : {},
+		"cargo_bike" : {}
+	},
+	"geometricError" : 242.53349718107836,
+	"root" : {
+		"boundingVolume" : {
+			"region" : [ 0.12557650251284508, 0.8948303895279676, 0.1257682583471032, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+		},
+		"geometricError" : 242.53349718107836,
+		"refine" : "REPLACE",
+		"content" : {
+			"boundingVolume" : {
+				"region" : [ 0.12557852185878962, 0.8948368681901511, 0.1257670662872241, 0.8949174535323741, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+			},
+			"uri" : "data/data20.b3dm"
+		},
+		"children" : [
+			{
+				"boundingVolume" : {
+					"region" : [ 0.12565355356333285, 0.8948686925237317, 0.1257682583471032, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+				},
+				"geometricError" : 168.90235193273747,
+				"refine" : "REPLACE",
+				"content" : {
+					"boundingVolume" : {
+						"region" : [ 0.12565355356333285, 0.8948686925237317, 0.1257682583471032, 0.8949174535323741, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+					},
+					"uri" : "data/data4.b3dm"
+				},
+				"children" : [
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12571371331731987, 0.8948924865974243, 0.1257682583471032, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12571371331731987, 0.8948924865974243, 0.12576807857819022, 0.8949174535323741, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data0.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12565355356333285, 0.8948898651128878, 0.12572226193999614, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12565355356333285, 0.8948898651128878, 0.12572226193999614, 0.8949173470672898, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data1.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12571656343998838, 0.8948715426464003, 0.1257682583471032, 0.8948986912429152, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12571656343998838, 0.8948715426464003, 0.1257682583471032, 0.8948986912429152, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data2.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12566309178769502, 0.8948686925237317, 0.12572655195929755, 0.8949015274029496, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12566309178769502, 0.8948686925237317, 0.12572655195929755, 0.8949015274029496, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data3.b3dm"
+						},
+						"children" : []
+					}
+				]
+			},
+			{
+				"boundingVolume" : {
+					"region" : [ 0.12557650251284508, 0.8948705233741172, 0.12569202236537608, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+				},
+				"geometricError" : 242.53021159406453,
+				"refine" : "REPLACE",
+				"content" : {
+					"boundingVolume" : {
+						"region" : [ 0.12557852185878962, 0.8948705233741172, 0.12569202236537608, 0.8949174535323741, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+					},
+					"uri" : "data/data9.b3dm"
+				},
+				"children" : [
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12562283227783927, 0.8948931236426012, 0.12569202236537608, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12562283227783927, 0.8948931236426012, 0.12569202236537608, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data5.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12557650251284508, 0.8948858438742913, 0.12563918077694272, 0.8949175250908734, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.1255765566180519, 0.8948858438742913, 0.12563918077694272, 0.8949174797123128, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data6.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12562070646681034, 0.8948683661471617, 0.1256833114270794, 0.8948984032635885, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12562070646681034, 0.8948683661471617, 0.1256833114270794, 0.8948984032635885, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data7.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12557650251284508, 0.8948705233741172, 0.12562839638749462, 0.8949012097530258, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.1255766735551118, 0.8948705233741172, 0.12562839638749462, 0.8949012097530258, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data8.b3dm"
+						},
+						"children" : []
+					}
+				]
+			},
+			{
+				"boundingVolume" : {
+					"region" : [ 0.12567238042997414, 0.8948303895279676, 0.1257682583471032, 0.8948765866479387, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+				},
+				"geometricError" : 140.90995624288595,
+				"refine" : "REPLACE",
+				"content" : {
+					"boundingVolume" : {
+						"region" : [ 0.12567310997760148, 0.8948410150924538, 0.1257681640993236, 0.8948765866479387, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+					},
+					"uri" : "data/data14.b3dm"
+				},
+				"children" : [
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12571081956142005, 0.8948512182872608, 0.1257682583471032, 0.8948765866479387, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12571081956142005, 0.8948512182872608, 0.1257681640993236, 0.8948765866479387, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data10.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12567150776534813, 0.8948465984007309, 0.12572390953081003, 0.89487644353094, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12567150776534813, 0.8948465984007309, 0.12572390953081003, 0.89487644353094, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data11.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.1257188637839425, 0.8948303895279676, 0.1257682583471032, 0.894857709166749, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.1257188637839425, 0.8948304593411376, 0.12576796338645962, 0.894857709166749, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data12.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12566837838999934, 0.8948303895279676, 0.125731770493761, 0.8948595871410242, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12566837838999934, 0.8948303895279676, 0.125731770493761, 0.8948595871410242, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data13.b3dm"
+						},
+						"children" : []
+					}
+				]
+			},
+			{
+				"boundingVolume" : {
+					"region" : [ 0.12557650251284508, 0.8948303895279676, 0.12567870201252487, 0.8948848595085931, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+				},
+				"geometricError" : 163.90969168542821,
+				"refine" : "REPLACE",
+				"content" : {
+					"boundingVolume" : {
+						"region" : [ 0.1255910114349169, 0.8948320999506346, 0.12567870201252487, 0.8948848595085931, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+					},
+					"uri" : "data/data19.b3dm"
+				},
+				"children" : [
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12562206258763914, 0.8948510926235547, 0.12567870201252487, 0.8948753143029139, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12562206258763914, 0.8948510926235547, 0.12567870201252487, 0.8948753143029139, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data15.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12557650251284508, 0.8948478044232441, 0.12563110862915222, 0.8948848595085931, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.1255767712935499, 0.8948478044232441, 0.12563110862915222, 0.8948848595085931, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data16.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.1256187272634386, 0.8948303895279676, 0.12568028677148566, 0.8948580198353558, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.1256187272634386, 0.8948322744835596, 0.12568028677148566, 0.8948580198353558, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data17.b3dm"
+						},
+						"children" : []
+					},
+					{
+						"boundingVolume" : {
+							"region" : [ 0.12557650251284508, 0.8948303895279676, 0.125628274214447, 0.8948573950074837, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+						},
+						"geometricError" : 0,
+						"refine" : "REPLACE",
+						"content" : {
+							"boundingVolume" : {
+								"region" : [ 0.12557650251284508, 0.8948310457717663, 0.125628274214447, 0.8948573950074837, 1.7976931348623157e+308, -1.7976931348623157e+308 ]
+							},
+							"uri" : "data/data18.b3dm"
+						},
+						"children" : []
+					}
+				]
+			}
+		]
+	}
+}
