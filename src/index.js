@@ -1,13 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Link, Route, HashRouter as Router, Routes } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import Minimal from "./CesViewMinimal";
+import CesViewClassification from "./CesViewClassification";
+import CesViewFull from "./CesViewFull";
+import CesViewWithMesh from "./CesViewWithMesh";
+import reportWebVitals from "./reportWebVitals";
+
+import "./index.css";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<CesViewFull />}></Route>
+          <Route path="/min" element={<Minimal />}></Route>
+          <Route path="/mesh" element={<CesViewWithMesh />}></Route>
+          <Route path="/full" element={<CesViewFull />}></Route>
+          <Route
+            path="/classification"
+            element={<CesViewClassification />}
+          ></Route>
+          <Route path="/full" element={<CesViewFull />}></Route>
+          {/* <Route path="/turnableTopicMap" element={< />}></Route>
+          <Route path="/turnableTopicMap2" element={<LibreMap2 />}></Route>
+          <Route path="/turnableTopicMap3" element={<LibreMap3 />}></Route>
+
+          <Route path="/topicmapWithNewLocator" element={<App />}></Route>
+
+          <Route path="/sensorDemo" element={<SensorMap />}></Route>
+          <Route path="/qrklima" element={<Klima />}></Route> */}
+        </Routes>
+      </div>
+    </Router>
   </React.StrictMode>
 );
 

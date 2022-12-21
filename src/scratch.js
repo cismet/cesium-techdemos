@@ -4,7 +4,8 @@ var windowPosition = new Cesium.Cartesian2(
 );
 var pickRay = viewer.scene.camera.getPickRay(windowPosition);
 var pickPosition = viewer.scene.globe.pick(pickRay, viewer.scene);
-var pickPositionCartographic = viewer.scene.globe.ellipsoid.cartesianToCartographic(pickPosition);
+var pickPositionCartographic =
+  viewer.scene.globe.ellipsoid.cartesianToCartographic(pickPosition);
 console.log(pickPositionCartographic.longitude * (180 / Math.PI));
 console.log(pickPositionCartographic.latitude * (180 / Math.PI));
 
@@ -25,7 +26,9 @@ if (!activeRotation) {
   var intersection = Cesium.IntersectionTests.rayEllipsoid(ray, ellipsoid);
 
   var intersectionPoint = Cesium.Ray.getPoint(ray, intersection.start);
-  const cameraHeight = ellipsoid.cartesianToCartographic(camera.position).height;
+  const cameraHeight = ellipsoid.cartesianToCartographic(
+    camera.position
+  ).height;
   const timer = setInterval(function () {
     viewer.camera.rotate(intersectionPoint, 0.001);
   }, 1);
@@ -51,19 +54,34 @@ var center = Cesium.Cartesian3.fromRadians(
   3626.0426275055174
 );
 var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
-viewer.scene.camera.lookAtTransform(transform, new Cesium.HeadingPitchRange(0, -Math.PI / 8, 2900));
+viewer.scene.camera.lookAtTransform(
+  transform,
+  new Cesium.HeadingPitchRange(0, -Math.PI / 8, 2900)
+);
 
 // Orbit this point
 viewer.clock.onTick.addEventListener(function (clock) {
   viewer.scene.camera.rotateRight(0.005);
 });
- ///------
+///------
 
-
- import logo from "./logo.svg";
+import logo from "./logo.svg";
 import "./App.css";
-import { Color, Cartesian3, CesiumTerrainProvider, createWorldTerrain, Ion } from "cesium";
-import { Viewer, Entity, PointGraphics, Cesium3DTileset, CameraFlyTo, Camera } from "resium";
+import {
+  Color,
+  Cartesian3,
+  CesiumTerrainProvider,
+  createWorldTerrain,
+  Ion,
+} from "cesium";
+import {
+  Viewer,
+  Entity,
+  PointGraphics,
+  Cesium3DTileset,
+  CameraFlyTo,
+  Camera,
+} from "resium";
 import { useEffect, useRef, useState } from "react";
 import Matrix4 from "cesium/Source/Core/Matrix4";
 import * as Cesium from "cesium";
@@ -210,7 +228,7 @@ function App() {
 
   const [camPatameters, setCamPatameters] = useState({});
   return (
-    <div className='App'>
+    <div className="App">
       <Viewer
         ref={viewerRef}
         timeline={false}
@@ -245,7 +263,10 @@ function App() {
         /> */}
 
         <Entity position={position}>
-          <PointGraphics pixelSize={10} verticalOrigin={Cesium.VerticalOrigin.BOTTOM} />
+          <PointGraphics
+            pixelSize={10}
+            verticalOrigin={Cesium.VerticalOrigin.BOTTOM}
+          />
           {meshVisible && (
             <Cesium3DTileset
               modelMatrix={modelMatrix}
@@ -266,15 +287,15 @@ function App() {
         </Entity>
         {/* </Camera> */}
 
-        <div class='leaflet-control-container'>
-          <div class='leaflet-top leaflet-right'>
-            <div class='leaflet-bar leaflet-control'>
+        <div className="leaflet-control-container">
+          <div className="leaflet-top leaflet-right">
+            <div className="leaflet-bar leaflet-control">
               <a
-                class='leaflet-bar-part'
-                href='#'
-                title='Vergrößern'
-                role='button'
-                aria-label='Vergrößern'
+                className="leaflet-bar-part"
+                href="#"
+                title="Vergrößern"
+                role="button"
+                aria-label="Vergrößern"
               >
                 <FontAwesomeIcon icon={faBars} />
               </a>
@@ -283,7 +304,7 @@ function App() {
         </div>
 
         <div
-          id='conttrolboxUpperLeft'
+          id="conttrolboxUpperLeft"
           style={{
             position: "absolute",
             top: 10,
@@ -292,22 +313,24 @@ function App() {
             _height: 100,
           }}
         >
-          <div class='leaflet-control-container'>
-            <div class='leaflet-top leaflet-left'>
-              <div class='leaflet-control-zoom leaflet-bar leaflet-control'>
+          <div className="leaflet-control-container">
+            <div className="leaflet-top leaflet-left">
+              <div className="leaflet-control-zoom leaflet-bar leaflet-control">
                 <a
-                  class='leaflet-control-zoom-in'
-                  href='#'
-                  title='Vergrößern'
-                  role='button'
-                  aria-label='Vergrößern'
+                  className="leaflet-control-zoom-in"
+                  href="#"
+                  title="Vergrößern"
+                  role="button"
+                  aria-label="Vergrößern"
                   onClick={() => {
                     const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
                     const scene = viewer.scene;
                     const camera = viewer.camera;
                     const ellipsoid = scene.globe.ellipsoid;
 
-                    const cameraHeight = ellipsoid.cartesianToCartographic(camera.position).height;
+                    const cameraHeight = ellipsoid.cartesianToCartographic(
+                      camera.position
+                    ).height;
                     const moveRate = cameraHeight / 10.0;
                     camera.moveForward(moveRate);
                   }}
@@ -315,18 +338,20 @@ function App() {
                   +
                 </a>
                 <a
-                  class='leaflet-control-zoom-out'
-                  href='#'
-                  title='Verkleinern'
-                  role='button'
-                  aria-label='Verkleinern'
+                  className="leaflet-control-zoom-out"
+                  href="#"
+                  title="Verkleinern"
+                  role="button"
+                  aria-label="Verkleinern"
                   onClick={() => {
                     const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
                     const scene = viewer.scene;
                     const camera = viewer.camera;
                     const ellipsoid = scene.globe.ellipsoid;
 
-                    const cameraHeight = ellipsoid.cartesianToCartographic(camera.position).height;
+                    const cameraHeight = ellipsoid.cartesianToCartographic(
+                      camera.position
+                    ).height;
                     const moveRate = cameraHeight / 10.0;
                     camera.moveBackward(moveRate);
                   }}
@@ -335,16 +360,20 @@ function App() {
                 </a>
               </div>
 
-              <div class='leaflet-bar leaflet-control'>
+              <div className="leaflet-bar leaflet-control">
                 <a
-                  class='leaflet-bar-part'
-                  href='#'
+                  className="leaflet-bar-part"
+                  href="#"
                   onClick={() => {
                     const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
 
                     viewer.camera.flyTo({
                       duration: 0,
-                      destination: Cartesian3.fromDegrees(7.20009, 51.272034, 1000),
+                      destination: Cartesian3.fromDegrees(
+                        7.20009,
+                        51.272034,
+                        1000
+                      ),
                       orientation: {
                         heading: 0, // Cesium.Math.TWO_PI == East
                         pitch: -1 * Cesium.Math.PI_OVER_TWO,
@@ -352,21 +381,21 @@ function App() {
                       },
                     });
                   }}
-                  title='Vollbildmodus'
+                  title="Vollbildmodus"
                 >
                   <FontAwesomeIcon icon={faHouseUser}></FontAwesomeIcon>
                 </a>
               </div>
-              {/* <div class='leaflet-bar leaflet-control'>
-                <a class='leaflet-bar-part' href='#' title='Vollbildmodus'>
+              {/* <div className='leaflet-bar leaflet-control'>
+                <a className='leaflet-bar-part' href='#' title='Vollbildmodus'>
                   <FontAwesomeIcon icon={faGlobe}></FontAwesomeIcon>
                 </a>
               </div> */}
-              <div class='leaflet-bar leaflet-control'>
+              <div className="leaflet-bar leaflet-control">
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
                 <a
-                  class='leaflet-bar-part'
-                  href='#'
+                  className="leaflet-bar-part"
+                  href="#"
                   onClick={() => {
                     if (!activeRotation) {
                       const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
@@ -381,9 +410,15 @@ function App() {
 
                       var ray = viewer.camera.getPickRay(windowCoordinates);
 
-                      var intersection = Cesium.IntersectionTests.rayEllipsoid(ray, ellipsoid);
+                      var intersection = Cesium.IntersectionTests.rayEllipsoid(
+                        ray,
+                        ellipsoid
+                      );
 
-                      var intersectionPoint = Cesium.Ray.getPoint(ray, intersection.start);
+                      var intersectionPoint = Cesium.Ray.getPoint(
+                        ray,
+                        intersection.start
+                      );
                       const cameraHeight = ellipsoid.cartesianToCartographic(
                         camera.position
                       ).height;
@@ -399,40 +434,43 @@ function App() {
                       setActiveRotation(false);
                     }
                   }}
-                  title='Round and round and round and round'
+                  title="Round and round and round and round"
                 >
-                  <FontAwesomeIcon spin={activeRotation} icon={faSync}></FontAwesomeIcon>
+                  <FontAwesomeIcon
+                    spin={activeRotation}
+                    icon={faSync}
+                  ></FontAwesomeIcon>
                 </a>
               </div>
               {!meshVisible && (
-                <div class='leaflet-bar leaflet-control'>
+                <div className="leaflet-bar leaflet-control">
                   <a
-                    class='leaflet-bar-part'
-                    href='#'
+                    className="leaflet-bar-part"
+                    href="#"
                     onClick={() => setMeshVisible(true)}
-                    title='3D Mesh anzeigen'
+                    title="3D Mesh anzeigen"
                   >
                     <FontAwesomeIcon icon={faCube}></FontAwesomeIcon>
                   </a>
                 </div>
               )}
               {meshVisible && (
-                <div class='leaflet-bar leaflet-control'>
+                <div className="leaflet-bar leaflet-control">
                   <a
-                    class='leaflet-bar-part'
-                    href='#'
+                    className="leaflet-bar-part"
+                    href="#"
                     onClick={() => setMeshVisible(false)}
-                    title='3D Mesh ausblenden'
+                    title="3D Mesh ausblenden"
                   >
                     <FontAwesomeIcon icon={faSquare}></FontAwesomeIcon>
                   </a>
                 </div>
               )}
-              <div class='leaflet-control-fullscreen leaflet-bar leaflet-control'>
+              <div className="leaflet-control-fullscreen leaflet-bar leaflet-control">
                 <a
-                  class='leaflet-control-fullscreen-button leaflet-bar-part'
-                  href='#'
-                  title='Vollbildmodus'
+                  className="leaflet-control-fullscreen-button leaflet-bar-part"
+                  href="#"
+                  title="Vollbildmodus"
                 ></a>
               </div>
             </div>
@@ -454,7 +492,6 @@ function App() {
 export default App;
 //-------
 
-
 // Grant CesiumJS access to your ion assets
 // Cesium.Ion.defaultAccessToken = "_your_cesium_ion_acess_token_";
 
@@ -463,13 +500,20 @@ var viewer = new Cesium.Viewer("cesiumContainer", {
 });
 
 // Lock camera to a point
-var wupp= Cesium.Cartesian3.fromDegrees(7.20009, 51.272034, 150)
+var wupp = Cesium.Cartesian3.fromDegrees(7.20009, 51.272034, 150);
 
-var center = Cesium.Cartesian3.fromRadians(2.4213211833389243, 0.6171926869414084, 3626.0426275055174);
+var center = Cesium.Cartesian3.fromRadians(
+  2.4213211833389243,
+  0.6171926869414084,
+  3626.0426275055174
+);
 var transform = Cesium.Transforms.eastNorthUpToFixedFrame(wupp);
-viewer.scene.camera.lookAtTransform(transform, new Cesium.HeadingPitchRange(0, -Math.PI/4, 500));
+viewer.scene.camera.lookAtTransform(
+  transform,
+  new Cesium.HeadingPitchRange(0, -Math.PI / 4, 500)
+);
 
 // Orbit this point
-viewer.clock.onTick.addEventListener(function(clock) {
+viewer.clock.onTick.addEventListener(function (clock) {
   viewer.scene.camera.rotateRight(0.005);
 });

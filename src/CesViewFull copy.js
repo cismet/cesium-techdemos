@@ -151,7 +151,6 @@ const unlockPosition = async (viewer) => {
 };
 function App() {
   const windowSize = useWindowSize();
-
   const home = Cesium.Cartesian3.fromDegrees(7.20009, 51.272034, 150);
   const position = Cartesian3.fromDegrees(7.20009, 51.2718, 155);
   const viewerRef = useRef(null);
@@ -206,9 +205,17 @@ function App() {
         tilingScheme: new Cesium.WebMercatorTilingScheme(),
       });
 
-      const verdis = new Cesium.WebMapServiceImageryProvider({
-        url: "https://maps.wuppertal.de/deegree/wms",
-        layers: "R102:trueortho202010",
+      const rain = new Cesium.WebMapServiceImageryProvider({
+        url: "https://starkregen-wuppertal.cismet.de/geoserver/wms?",
+        layers: "starkregen:S11_T50_depth",
+        styles: "starkregen:depth",
+        parameters: {
+          transparent: "true",
+          format: "image/png",
+        },
+        tilingScheme: new Cesium.WebMercatorTilingScheme(),
+
+        enablePickFeatures: false,
       });
 
       viewer.scene.globe.baseColor = Cesium.Color.BLACK;
@@ -216,6 +223,8 @@ function App() {
       viewer.sceneMode = Cesium.SceneMode.COLUMBUS_VIEW;
 
       viewer.imageryLayers.addImageryProvider(provider);
+      viewer.imageryLayers.addImageryProvider(rain);
+
       viewer.scene.screenSpaceCameraController.enableCollisionDetection = true;
 
       const transform = Cesium.Transforms.eastNorthUpToFixedFrame(home);
@@ -225,37 +234,138 @@ function App() {
       );
 
       unlockPosition(viewer);
+
+      // Create a new Cesium3DTileset object and pass it the URL of the tileset
+      // tileset = new Cesium.Cesium3DTileset({
+      //   url: "https://wupp-3d-data.cismet.de/mesh/tileset.json",
+      // });
+
+      // // Add the tileset to the viewer
+      // viewer.scene.primitives.add(tileset);
+
       viewer.clock.onTick.addEventListener(function (clock) {
         if (activeRotationRef.current) {
           viewer.scene.camera.rotateRight(0.001);
         }
       });
       Cesium.GeoJsonDataSource.clampToGround = true;
+      // holeResourcePromise.then(function (dataSource) {
+      //   // Get the array of entities from the data source
+      //   var entities = dataSource.entities.values;
+      //   // Loop through the entities and find the one with a polygon geometry
+      //   for (var i = 0; i < entities.length; i++) {
+      //     var entity = entities[i];
+      //     if (entity.polygon) {
+      //       // This is a polygon entity, get the geometry
+      //       var polygonGeometry = entity.polygon.hierarchy.getValue();
+      //       // Get the root tile of the tileset
+      //       var root = tileset.root;
+      //       // Add the hole to the root tile using the addHoles function
+      //       root.addHoles([polygonGeometry]);
+      //     }
+      //   }
+      // });
 
-      var promise = Cesium.GeoJsonDataSource.load("/data/neubauWH.json", {
-        clampToGround: true,
-      });
-      promise.then(function (dataSource) {
-        console.log("neubau", dataSource);
-        // dataSource.clampToGround = true;
-        viewer.dataSources.add(dataSource);
-
-        var entities = dataSource.entities.values;
-        for (var i = 0; i < entities.length; i++) {
-          var entity = entities[i];
-          console.log("entity", entity);
-
-          //Extrude the polygon based on any attribute you desire
-          entity.polygon.extrudedHeight = 160 + 25; //entity.properties.parent_id;
-          entity.polygon.classificationType =
-            Cesium.ClassificationType.CESIUM_3D_TILE;
-          entity.polygon.outline = false;
-          entity.polygoin.clampToGround = true;
-          entity.polygon.material = Cesium.Color.fromRandom({
-            alpha: 0.6,
-          });
+      var holeResourcePromise = Cesium.GeoJsonDataSource.load(
+        "/data/neubau.json",
+        {
+          clampToGround: true,
         }
-      });
+      );
+
+      // // Wait for the tileset to be ready
+      // tileset.readyPromise.then(function () {
+      //   // Wait for the data source to load
+
+      //   console.log("xxx tileset ready");
+
+      //   // holeResourcePromise.then(function (dataSource) {
+      //   //   // Get the array of entities from the data source
+      //   //   var entities = dataSource.entities.values;
+      //   //   // Loop through the entities and find the one with a polygon geometry
+      //   //   for (var i = 0; i < entities.length; i++) {
+      //   //     var entity = entities[i];
+      //   //     if (entity.polygon) {
+      //   //       // This is a polygon entity, get the geometry
+      //   //       var polygonGeometry = entity.polygon.hierarchy.getValue();
+      //   //       // Get the root tile of the tileset
+      //   //       var root = tileset.root;
+      //   //       // Add the hole to the root tile using the addHoles function
+      //   //       root.addHoles([polygonGeometry]);
+      //   //     }
+      //   //   }
+      //   // });
+      // });
+
+      // holeResourcePromise
+      //   .then((dataSource) => {
+      //     var entities = dataSource.entities.values;
+
+      //     // Loop through the entities and find the one with a polygon geometry
+      //     for (var i = 0; i < entities.length; i++) {
+      //       var entity = entities[i];
+      //       if (entity.polygon) {
+      //         // This is a polygon entity, get the geometry
+      //         var holeGeometry = entity.polygon.hierarchy.getValue();
+      //         // Get the geometry object for the 3D Tileset
+      //         console.log("xxx tileset", tileset.geometry);
+
+      //         var tilesetGeometry = tileset.geometry;
+
+      //         // Add the hole to the tileset geometry using the addHoles function
+      //         tilesetGeometry.hierarchy.addHoles([holeGeometry]);
+
+      //         // Update the tileset with the modified geometry
+      //         tileset.geometry = tilesetGeometry;
+      //       }
+      //       // Now you can use the polygonGeometry object to cut a hole into the 3D Tileset
+      //       // ...
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log("xxx error", error);
+      //   });
+
+      // var promise = Cesium.GeoJsonDataSource.load("/data/neubauWH.json", {
+      //   clampToGround: true,
+      // });
+      // promise.then(function (dataSource) {
+      //   console.log("neubau", dataSource);
+      //   // dataSource.clampToGround = true;
+      //   viewer.dataSources.add(dataSource);
+
+      //   var entities = dataSource.entities.values;
+      //   for (var i = 0; i < entities.length; i++) {
+      //     var entity = entities[i];
+      //     console.log("entity", entity);
+
+      //     //Extrude the polygon based on any attribute you desire
+      //     entity.polygon.extrudedHeight = 160 + 25; //entity.properties.parent_id;
+      //     entity.polygon.classificationType =
+      //       Cesium.ClassificationType.CESIUM_3D_TILE;
+      //     entity.polygon.outline = false;
+      //     entity.polygoin.clampToGround = true;
+      //     entity.polygon.material = Cesium.Color.fromRandom({
+      //       alpha: 0.6,
+      //     });
+      //   }
+      // });
+
+      const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+
+      handler.setInputAction(function (movement) {
+        const feature = scene.pick(movement.endPosition);
+        if (feature instanceof Cesium.Cesium3DTileFeature) {
+          console.log("feature", feature);
+
+          const propertyIds = feature.getPropertyIds();
+          const length = propertyIds.length;
+          for (let i = 0; i < length; ++i) {
+            const propertyId = propertyIds[i];
+            console.log(`{propertyId}: ${feature.getProperty(propertyId)}`);
+          }
+        }
+      }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
       console.log("viewer", viewer);
     }
@@ -343,6 +453,7 @@ function App() {
           />
           {meshVisible && (
             <Cesium3DTileset
+              ref={tilesetRef}
               modelMatrix={modelMatrix}
               // debugWireframe={true}
               // showOutline={true}
@@ -361,11 +472,11 @@ function App() {
         </Entity>
         {/* </Camera> */}
 
-        <div class="leaflet-control-container">
-          <div class="leaflet-top leaflet-right">
-            <div class="leaflet-bar leaflet-control">
+        <div className="leaflet-control-container">
+          <div className="leaflet-top leaflet-right">
+            <div className="leaflet-bar leaflet-control">
               <a
-                class="leaflet-bar-part"
+                className="leaflet-bar-part"
                 href="#"
                 title="Vergrößern"
                 role="button"
@@ -387,11 +498,11 @@ function App() {
             _height: 100,
           }}
         >
-          <div class="leaflet-control-container">
-            <div class="leaflet-top leaflet-left">
-              <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+          <div className="leaflet-control-container">
+            <div className="leaflet-top leaflet-left">
+              <div className="leaflet-control-zoom leaflet-bar leaflet-control">
                 <a
-                  class="leaflet-control-zoom-in"
+                  className="leaflet-control-zoom-in"
                   href="#"
                   title="Vergrößern"
                   role="button"
@@ -412,7 +523,7 @@ function App() {
                   +
                 </a>
                 <a
-                  class="leaflet-control-zoom-out"
+                  className="leaflet-control-zoom-out"
                   href="#"
                   title="Verkleinern"
                   role="button"
@@ -434,9 +545,9 @@ function App() {
                 </a>
               </div>
 
-              <div class="leaflet-bar leaflet-control">
+              <div className="leaflet-bar leaflet-control">
                 <a
-                  class="leaflet-bar-part"
+                  className="leaflet-bar-part"
                   href="#"
                   onClick={() => {
                     const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
@@ -464,15 +575,15 @@ function App() {
                   <FontAwesomeIcon icon={faHouseUser}></FontAwesomeIcon>
                 </a>
               </div>
-              {/* <div class='leaflet-bar leaflet-control'>
-                <a class='leaflet-bar-part' href='#' title='Vollbildmodus'>
+              {/* <div className='leaflet-bar leaflet-control'>
+                <a className='leaflet-bar-part' href='#' title='Vollbildmodus'>
                   <FontAwesomeIcon icon={faGlobe}></FontAwesomeIcon>
                 </a>
               </div> */}
-              <div class="leaflet-bar leaflet-control">
+              <div className="leaflet-bar leaflet-control">
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
                 <a
-                  class="leaflet-bar-part"
+                  className="leaflet-bar-part"
                   href="#"
                   onClick={() => {
                     const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
@@ -494,9 +605,9 @@ function App() {
                 </a>
               </div>
               {!meshVisible && (
-                <div class="leaflet-bar leaflet-control">
+                <div className="leaflet-bar leaflet-control">
                   <a
-                    class="leaflet-bar-part"
+                    className="leaflet-bar-part"
                     href="#"
                     onClick={() => setMeshVisible(true)}
                     title="3D Mesh anzeigen"
@@ -506,9 +617,9 @@ function App() {
                 </div>
               )}
               {meshVisible && (
-                <div class="leaflet-bar leaflet-control">
+                <div className="leaflet-bar leaflet-control">
                   <a
-                    class="leaflet-bar-part"
+                    className="leaflet-bar-part"
                     href="#"
                     onClick={() => setMeshVisible(false)}
                     title="3D Mesh ausblenden"
@@ -517,9 +628,9 @@ function App() {
                   </a>
                 </div>
               )}
-              <div class="leaflet-control-fullscreen leaflet-bar leaflet-control">
+              <div className="leaflet-control-fullscreen leaflet-bar leaflet-control">
                 <a
-                  class="leaflet-control-fullscreen-button leaflet-bar-part"
+                  className="leaflet-control-fullscreen-button leaflet-bar-part"
                   href="#"
                   title="Vollbildmodus"
                   onClick={() => {
@@ -528,9 +639,9 @@ function App() {
                   }}
                 ></a>
               </div>
-              <div class="leaflet-bar leaflet-control">
+              <div className="leaflet-bar leaflet-control">
                 <a
-                  class="leaflet-bar-part"
+                  className="leaflet-bar-part"
                   href="#"
                   title="Sperren/Entsprerren um den Mittelpunkt"
                   onClick={() => {
@@ -551,9 +662,9 @@ function App() {
                   ></FontAwesomeIcon>
                 </a>
               </div>
-              <div class="leaflet-bar leaflet-control">
+              <div className="leaflet-bar leaflet-control">
                 <a
-                  class="leaflet-bar-part"
+                  className="leaflet-bar-part"
                   href="#"
                   title="Info in JS Consoel schreiben"
                   onClick={async () => {
@@ -590,21 +701,49 @@ function App() {
               </div>
               {dev && (
                 <>
-                  <div class="leaflet-bar leaflet-control">
+                  <div className="leaflet-bar leaflet-control">
                     <a
-                      class="leaflet-bar-part"
+                      className="leaflet-bar-part"
                       href="#"
                       title="Experimentalfunktion 1"
                       onClick={() => {
                         const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
+                        var holeResourcePromise = Cesium.GeoJsonDataSource.load(
+                          "/data/neubau.json",
+                          {
+                            clampToGround: true,
+                          }
+                        );
+
+                        holeResourcePromise.then(function (dataSource) {
+                          // Get the array of entities from the data source
+                          var entities = dataSource.entities.values;
+                          // Loop through the entities and find the one with a polygon geometry
+                          for (var i = 0; i < entities.length; i++) {
+                            var entity = entities[i];
+                            if (entity.polygon) {
+                              // This is a polygon entity, get the geometry
+                              var polygonGeometry =
+                                entity.polygon.hierarchy.getValue();
+                              // Get the root tile of the tileset
+                              console.log("xxx tilesetRef", tilesetRef);
+
+                              var ts = tilesetRef.current.cesiumElement;
+                              console.log("xxx tileset", ts);
+
+                              // Add the hole to the root tile using the addHoles function
+                              // root.addHoles([polygonGeometry]);
+                            }
+                          }
+                        });
                       }}
                     >
                       <FontAwesomeIcon icon={faVial}></FontAwesomeIcon>
                     </a>
                   </div>
-                  <div class="leaflet-bar leaflet-control">
+                  <div className="leaflet-bar leaflet-control">
                     <a
-                      class="leaflet-bar-part"
+                      className="leaflet-bar-part"
                       href="#"
                       title="Experimentalfunktion 2"
                       onClick={() => {
@@ -615,9 +754,9 @@ function App() {
                       <FontAwesomeIcon icon={faVials}></FontAwesomeIcon>
                     </a>
                   </div>
-                  <div class="leaflet-bar leaflet-control">
+                  <div className="leaflet-bar leaflet-control">
                     <a
-                      class="leaflet-bar-part"
+                      className="leaflet-bar-part"
                       href="#"
                       title="Experimentalfunktion 3"
                       onClick={() => {
