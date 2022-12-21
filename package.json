@@ -1,6 +1,6 @@
 {
   "name": "cesium-techdemo",
-  "version": "0.1.0-SNAPSHOT.1",
+  "version": "0.1.0-SNAPSHOT.2",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.5",
