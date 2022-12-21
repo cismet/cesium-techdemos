@@ -61,7 +61,7 @@ function App() {
   useEffect(() => {
     if (viewerRef?.current?.cesiumElement) {
       const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
-      initializeCesium(viewer, home);
+      initializeCesium(viewer, undefined, home);
       unlockPosition(viewer);
 
       const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);

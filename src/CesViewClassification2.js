@@ -41,9 +41,7 @@ function useWindowSize() {
 }
 function App() {
   const windowSize = useWindowSize();
-  const dev = process.env.NODE_ENV !== "production";
 
-  const [meshVisible, setMeshVisible] = useState(true);
   const tilesetRef = useRef(null);
   const heightOffset = 0;
   var surface = Cartesian3.fromRadians(7.20009, 51.272034, 0.0);
@@ -53,30 +51,24 @@ function App() {
   return (
     <div className="App">
       <CesiumView
+        disableZoomRestrictions={true}
         minZoom={300}
         postInit={(viewer) => {
-          var promise = Cesium.GeoJsonDataSource.load("/data/neubauWH.json", {
+          var promise = Cesium.GeoJsonDataSource.load("/data/neubau.json", {
             clampToGround: true,
           });
           promise.then(function (dataSource) {
-            console.log("neubau", dataSource);
-            // dataSource.clampToGround = true;
             viewer.dataSources.add(dataSource);
 
             var entities = dataSource.entities.values;
             for (var i = 0; i < entities.length; i++) {
               var entity = entities[i];
-              console.log("entity", entity);
-
-              //Extrude the polygon based on any attribute you desire
-              entity.polygon.extrudedHeight = 160 + 25; //entity.properties.parent_id;
               entity.polygon.classificationType =
                 Cesium.ClassificationType.CESIUM_3D_TILE;
               entity.polygon.outline = false;
-              entity.polygoin.clampToGround = true;
-              entity.polygon.material = Cesium.Color.fromRandom({
-                alpha: 0.6,
-              });
+
+              entity.polygon.material =
+                Cesium.Color.fromCssColorString("#67ADDF88");
             }
           });
         }}
@@ -93,29 +85,27 @@ function App() {
           <LockCenterControl />
         </ControlContainer>
 
-        {meshVisible && (
-          <Cesium3DTileset
-            ref={tilesetRef}
-            modelMatrix={modelMatrix}
-            // debugWireframe={true}
-            // showOutline={true}
-            // enableShowOutline={true}
-            // debugShowRenderingStatistics={true}
-            // enableDebugWireframe={true}
-            //debugColorizeTiles={true}
-            scene3DOnly={true}
-            url={"https://wupp-3d-data.cismet.de/mesh/tileset.json"}
-            onAllTilesLoad={() => {
-              const tileset = tilesetRef.current.cesiumElement;
-              console.log("onAllTilesLoad", tilesetRef.current);
-              // // Wait for the tileset to be ready
-              tileset.readyPromise.then(function () {
-                // Wait for the data source to load
-                console.log("xxx tileset ready");
-              });
-            }}
-          />
-        )}
+        <Cesium3DTileset
+          ref={tilesetRef}
+          modelMatrix={modelMatrix}
+          // debugWireframe={true}
+          // showOutline={true}
+          // enableShowOutline={true}
+          // debugShowRenderingStatistics={true}
+          // enableDebugWireframe={true}
+          //debugColorizeTiles={true}
+          scene3DOnly={true}
+          url={"https://wupp-3d-data.cismet.de/mesh/tileset.json"}
+          onAllTilesLoad={() => {
+            const tileset = tilesetRef.current.cesiumElement;
+            console.log("onAllTilesLoad", tilesetRef.current);
+            // // Wait for the tileset to be ready
+            tileset.readyPromise.then(function () {
+              // Wait for the data source to load
+              console.log("xxx tileset ready");
+            });
+          }}
+        />
       </CesiumView>
       <Cross windowSize={windowSize} />
     </div>

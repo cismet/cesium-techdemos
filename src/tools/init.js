@@ -6,7 +6,12 @@ import * as Cesium from "cesium";
 import "leaflet/dist/leaflet.css";
 // export const mapProjection = new Cesium.WebMercatorProjection();
 
-export const initializeCesium = (viewer, home, postInit = () => {}) => {
+export const initializeCesium = (
+  viewer,
+  viewerprops,
+  home,
+  postInit = () => {}
+) => {
   const scene = viewer.scene;
   if (scene.skyBox && scene.skyBox.destroy) {
     scene.skyBox.destroy();
@@ -54,33 +59,35 @@ export const initializeCesium = (viewer, home, postInit = () => {}) => {
   // from https://github.com/CesiumGS/cesium/issues/3984#issuecomment-288031904
   const camera = viewer.camera;
   camera.percentageChanged = 0;
-  const minZoom = 400; // m
-  const maxZoom = 5000;
+
+  const minZoom = viewerprops?.minZoom || 400; // m
+  const maxZoom = viewerprops?.maxZoom || 5000;
   let lastCamPos = camera.positionCartographic.clone();
-  const listener = () => {
-    const camHeight = camera.positionCartographic.height;
-    // console.log("camHeight", camHeight);
+  if (!viewerprops?.disableZoomRestrictions) {
+    const listener = () => {
+      const camHeight = camera.positionCartographic.height;
+      // console.log("camHeight", camHeight);
 
-    let isOutsideZoomLimits = false;
-    let destHeight;
-    if (camHeight < minZoom) {
-      isOutsideZoomLimits = true;
-      destHeight = minZoom;
-    } else if (camHeight > maxZoom) {
-      isOutsideZoomLimits = true;
-      destHeight = maxZoom;
-    }
-    if (isOutsideZoomLimits) {
-      const dest = Cesium.Cartesian3.fromRadians(
-        lastCamPos.longitude, // ← previous coordinates
-        lastCamPos.latitude,
-        destHeight
-      );
-      camera.position = dest;
-    }
-    lastCamPos = camera.positionCartographic.clone();
-  };
-  const removeListener = camera.changed.addEventListener(listener);
-
+      let isOutsideZoomLimits = false;
+      let destHeight;
+      if (camHeight < minZoom) {
+        isOutsideZoomLimits = true;
+        destHeight = minZoom;
+      } else if (camHeight > maxZoom) {
+        isOutsideZoomLimits = true;
+        destHeight = maxZoom;
+      }
+      if (isOutsideZoomLimits) {
+        const dest = Cesium.Cartesian3.fromRadians(
+          lastCamPos.longitude, // ← previous coordinates
+          lastCamPos.latitude,
+          destHeight
+        );
+        camera.position = dest;
+      }
+      lastCamPos = camera.positionCartographic.clone();
+    };
+    const removeListener = camera.changed.addEventListener(listener);
+  }
   postInit(viewer);
 };

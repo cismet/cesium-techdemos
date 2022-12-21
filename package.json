@@ -1,6 +1,6 @@
 {
-  "name": "resium",
-  "version": "0.1.0",
+  "name": "cesium-techdemo",
+  "version": "0.1.0_SNAPSHOT.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.5",
@@ -30,7 +30,12 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "init:docker:multiplatform": "docker buildx create --use",
+    "bumpSnapshot": "npm version prerelease --preid=SNAPSHOT && yarn run postversion",
+    "postversion": "echo Postversionhook && rm .version && rm .githash && sed '/^.*\"version\":.*$/d' package.json > .package.json.without.version && echo $npm_package_version && echo $npm_package_version > .version && git rev-parse HEAD > .githash",
+    "postbuild": "ls -d build > /dev/null && git rev-parse --short HEAD && echo $npm_package_version && git rev-parse --short HEAD > build/githash && echo $npm_package_version > build/version",
+    "build:docker": "VERSION=`echo $npm_package_version| sed 's/\\.[0-9]*-SNAPSHOT.*$/-SNAPSHOT/'`; docker buildx build --platform=linux/amd64,linux/arm64 -t cismet/$npm_package_name -t cismet/$npm_package_name:$VERSION .",
+    "publish:docker": "VERSION=`echo $npm_package_version| sed 's/\\.[0-9]*-SNAPSHOT.*$/-SNAPSHOT/'`; docker buildx build --push --platform=linux/amd64,linux/arm64 -t cismet/$npm_package_name -t cismet/$npm_package_name:$VERSION ."
   },
   "eslintConfig": {
     "extends": [

@@ -36,7 +36,7 @@ function CesiumView(props) {
   useEffect(() => {
     if (viewerRef?.current?.cesiumElement) {
       const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
-      initializeCesium(viewer, home, props.postInit);
+      initializeCesium(viewer, props, home, props.postInit);
       unlockPosition(viewer);
     }
   }, [viewerRef]);

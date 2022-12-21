@@ -4,6 +4,7 @@ import { Link, Route, HashRouter as Router, Routes } from "react-router-dom";
 
 import Minimal from "./CesViewMinimal";
 import CesViewClassification from "./CesViewClassification";
+import CesViewClassification2 from "./CesViewClassification2";
 import CesViewFull from "./CesViewFull";
 import CesViewWithMesh from "./CesViewWithMesh";
 import reportWebVitals from "./reportWebVitals";
@@ -16,13 +17,17 @@ root.render(
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<CesViewFull />}></Route>
+          <Route path="/" element={<CesViewClassification2 />}></Route>
           <Route path="/min" element={<Minimal />}></Route>
           <Route path="/mesh" element={<CesViewWithMesh />}></Route>
           <Route path="/full" element={<CesViewFull />}></Route>
           <Route
             path="/classification"
             element={<CesViewClassification />}
+          ></Route>
+          <Route
+            path="/classification2"
+            element={<CesViewClassification2 />}
           ></Route>
           <Route path="/full" element={<CesViewFull />}></Route>
           {/* <Route path="/turnableTopicMap" element={< />}></Route>

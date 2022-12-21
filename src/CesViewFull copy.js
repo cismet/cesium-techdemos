@@ -274,28 +274,28 @@ function App() {
       );
 
       // // Wait for the tileset to be ready
-      // tileset.readyPromise.then(function () {
-      //   // Wait for the data source to load
+      tileset.readyPromise.then(function () {
+        // Wait for the data source to load
 
-      //   console.log("xxx tileset ready");
+        console.log("xxx tileset ready");
 
-      //   // holeResourcePromise.then(function (dataSource) {
-      //   //   // Get the array of entities from the data source
-      //   //   var entities = dataSource.entities.values;
-      //   //   // Loop through the entities and find the one with a polygon geometry
-      //   //   for (var i = 0; i < entities.length; i++) {
-      //   //     var entity = entities[i];
-      //   //     if (entity.polygon) {
-      //   //       // This is a polygon entity, get the geometry
-      //   //       var polygonGeometry = entity.polygon.hierarchy.getValue();
-      //   //       // Get the root tile of the tileset
-      //   //       var root = tileset.root;
-      //   //       // Add the hole to the root tile using the addHoles function
-      //   //       root.addHoles([polygonGeometry]);
-      //   //     }
-      //   //   }
-      //   // });
-      // });
+        // holeResourcePromise.then(function (dataSource) {
+        //   // Get the array of entities from the data source
+        //   var entities = dataSource.entities.values;
+        //   // Loop through the entities and find the one with a polygon geometry
+        //   for (var i = 0; i < entities.length; i++) {
+        //     var entity = entities[i];
+        //     if (entity.polygon) {
+        //       // This is a polygon entity, get the geometry
+        //       var polygonGeometry = entity.polygon.hierarchy.getValue();
+        //       // Get the root tile of the tileset
+        //       var root = tileset.root;
+        //       // Add the hole to the root tile using the addHoles function
+        //       root.addHoles([polygonGeometry]);
+        //     }
+        //   }
+        // });
+      });
 
       // holeResourcePromise
       //   .then((dataSource) => {
