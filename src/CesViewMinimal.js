@@ -4,7 +4,6 @@
 import "./App.css";
 import "leaflet-fullscreen-custom-container-fork";
 import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
-// import IonResource from "cesium/Source/Core/IonResource";
 
 import "leaflet/dist/leaflet.css";
 import CesiumView from "./CesiumView";

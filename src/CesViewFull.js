@@ -4,13 +4,11 @@
 import "./App.css";
 import "leaflet-fullscreen-custom-container-fork";
 import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
-// import IonResource from "cesium/Source/Core/IonResource";
 
 import "leaflet/dist/leaflet.css";
 import CesiumView from "./CesiumView";
 import { Cesium3DTileset } from "resium";
-import Cartesian3 from "cesium/Source/Core/Cartesian3";
-import Matrix4 from "cesium/Source/Core/Matrix4";
+import {Cartesian3, Matrix4} from "cesium";
 import { useLayoutEffect, useRef, useState } from "react";
 import Cross from "./components/Cross";
 import ControlContainer from "./components/controls/ControlContainer";

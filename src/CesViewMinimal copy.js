@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Cartesian3, CesiumTerrainProvider, Color, Ion } from "cesium";
 import * as Cesium from "cesium";
-import Matrix4 from "cesium/Source/Core/Matrix4";
+import { Matrix4 } from "cesium";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Cesium3DTileset, Entity, PointGraphics, Viewer } from "resium";
 import ZoomControls from "./components/controls/ZoomControls";
@@ -19,7 +19,6 @@ import ZoomControls from "./components/controls/ZoomControls";
 import "./App.css";
 import "leaflet-fullscreen-custom-container-fork";
 import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
-// import IonResource from "cesium/Source/Core/IonResource";
 
 import "leaflet/dist/leaflet.css";
 import ControlContainer from "./components/controls/ControlContainer";

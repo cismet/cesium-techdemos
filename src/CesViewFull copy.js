@@ -23,7 +23,7 @@ import {
   Ion,
 } from "cesium";
 import * as Cesium from "cesium";
-import Matrix4 from "cesium/Source/Core/Matrix4";
+import {Matrix4} from "cesium4";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   Camera,
@@ -44,7 +44,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import "leaflet-fullscreen-custom-container-fork";
 import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
-// import IonResource from "cesium/Source/Core/IonResource";
 
 import "leaflet/dist/leaflet.css";
 
