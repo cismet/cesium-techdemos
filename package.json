@@ -2,6 +2,7 @@
   "name": "cesium-techdemo",
   "version": "0.1.0-SNAPSHOT.2",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@craco/craco": "^6.4.5",
     "@fortawesome/fontawesome-free": "^5.12.0",
