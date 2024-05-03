@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Link, Route, HashRouter as Router, Routes } from "react-router-dom";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 
 import Minimal from "./CesViewMinimal";
+import CesClassifyTilesetByGeojson from "./CesClassifyTilesetByGeojson";
+
 import CesViewClassification from "./CesViewClassification";
 import CesViewClassification2 from "./CesViewClassification2";
 import CesViewFull from "./CesViewFull";
@@ -17,7 +19,7 @@ root.render(
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<CesViewClassification2 />}></Route>
+          <Route path="/" element={<CesClassifyTilesetByGeojson />}></Route>
           <Route path="/min" element={<Minimal />}></Route>
           <Route path="/mesh" element={<CesViewWithMesh />}></Route>
           <Route path="/full" element={<CesViewFull />}></Route>

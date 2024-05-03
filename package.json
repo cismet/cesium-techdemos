@@ -14,7 +14,9 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@turf/buffer": "^6.5.0",
     "cesium": "^1.98.1",
+    "color-hash": "^2.0.2",
     "craco-cesium": "^1.2.0",
     "leaflet": "^1.9.2",
     "leaflet-fullscreen-custom-container-fork": "^1.0.7",
@@ -24,8 +26,7 @@
     "react-scripts": "5.0.1",
     "resium": "^1.15.1",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4",
-    "zlib": "^1.0.5"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "craco start",
