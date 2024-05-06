@@ -24,9 +24,10 @@ import ZoomControls from "./components/controls/ZoomControls";
 
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-// const home = Cartesian3.fromDegrees(7.20009, 51.272034, 150);
+const home = Cartesian3.fromDegrees(7.20009, 51.272034, 150);
 const sample_buildings_src = "dataSamples/buildings.json";
 const DEFAULT_TRANSPARENCY = 0.7;
+
 const colorHash = new ColorHash();
 const materialLookup = {};
 
@@ -112,14 +113,14 @@ function App() {
 
   return (
     <div className="App">
-      <CesiumView>
+      <CesiumView disableZoomRestrictions={true} minZoom={300}>
         <ControlContainer position="topright">
           <OnMapButton icon={faBars} />
         </ControlContainer>
 
         <ControlContainer position="topleft">
           <ZoomControls />
-          <Home home={null} />
+          <Home home={home} />
           <SpinningControl />
 
           <LockCenterControl />
