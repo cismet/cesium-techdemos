@@ -198,7 +198,7 @@ function App() {
       });
 
       const provider = new Cesium.WebMapServiceImageryProvider({
-        url: "https://maps.wuppertal.de/deegree/wms",
+        url: "https://maps.wuppertal.de/karten",
         layers: "R102:trueortho2022",
         format: "image/png",
         enablePickFeatures: false,
