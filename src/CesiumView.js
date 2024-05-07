@@ -34,15 +34,15 @@ function CesiumView(props) {
   const viewerRef = useRef(null);
 
   useEffect(() => {
-    if (viewerRef?.current?.cesiumElement) {
+   if (viewerRef?.current?.cesiumElement) {
       const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
       initializeCesium(viewer, props, home, props.postInit);
       unlockPosition(viewer);
     }
-  }, [viewerRef]);
+  }, [viewerRef, home, props]);
 
   return (
-    <div className="App">
+    <div className="App">()
       <Viewer
         ref={viewerRef}
         timeline={false}
@@ -56,12 +56,9 @@ function CesiumView(props) {
         sceneModePicker={false}
         fullscreenButton={false}
         full={true}
-        infoBox={true}
-        vrButton={true}
+        infoBox={false}
+        vrButton={false}
         //sceneMode={Cesium.SceneMode.COLUMBUS_VIEW}
-        onClick={(movement, target) => {
-          console.log("xxx movement,target", { movement, target });
-        }}
       >
         {props.children}
       </Viewer>

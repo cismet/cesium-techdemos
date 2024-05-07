@@ -24,10 +24,12 @@ export const initializeCesium = (
       viewer._cesiumWidget._creditContainer
     );
   } catch (error) {}
+  /*
   viewer.terrainProvider = new CesiumTerrainProvider({
     url: "https://cesium-wupp-terrain.cismet.de/terrain2020",
     format: "image/png",
   });
+*/
 
   const wuppOrtho = new Cesium.WebMapServiceImageryProvider({
     url: "https://maps.wuppertal.de/karten",
@@ -41,7 +43,7 @@ export const initializeCesium = (
   //viewer.mapProjection = mapProjection;
   // viewer.sceneMode = Cesium.SceneMode.COLUMBUS_VIEW;
 
-  viewer.imageryLayers.addImageryProvider(wuppOrtho);
+  // viewer.imageryLayers.addImageryProvider(wuppOrtho);
 
   viewer.scene.screenSpaceCameraController.enableCollisionDetection = true;
 

@@ -4,13 +4,14 @@ import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
 import "leaflet/dist/leaflet.css";
 import CesiumView from "./CesiumView";
 import ColorHash from "color-hash";
+import { Cesium3DTileset, GeoJsonDataSource } from "resium";
 import {
-  Cesium3DTileset,
-  GeoJsonDataSource,
-  ScreenSpaceEventHandler,
-  ScreenSpaceEvent,
-} from "resium";
-import { Cartesian3, Matrix4, Color, ScreenSpaceEventType } from "cesium";
+  Cartesian3,
+  Matrix4,
+  Color,
+  ShadowMode,
+  ClassificationType,
+} from "cesium";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Cross from "./components/Cross";
 import ControlContainer from "./components/controls/ControlContainer";
@@ -26,9 +27,16 @@ import ZoomControls from "./components/controls/ZoomControls";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 const home = Cartesian3.fromDegrees(7.20009, 51.272034, 150);
 const sample_buildings_src = "dataSamples/buildings.json";
-const DEFAULT_TRANSPARENCY = 0.7;
+const sample_buildings_src_buffered = "dataSamples/buildings_buffered_1m.json";
+const DEFAULT_FOOTPRINT_ALPHA = 0.7;
+const DEFAULT_TILESET_ALPHA = 0.7;
+const HIGHLIGHT_COLOR = Color.YELLOW;
+const HIGHLIGHT_COLOR_ALPHA = 0.7;
 
-const colorHash = new ColorHash();
+const colorHash = new ColorHash({
+  saturation: [0.8],
+  lightness: [0.25, 0.75],
+});
 const materialLookup = {};
 
 function useWindowSize() {
@@ -46,9 +54,13 @@ function useWindowSize() {
 
 function App() {
   const windowSize = useWindowSize();
-  const [transparency, setTransparency] = useState(DEFAULT_TRANSPARENCY);
+  const [footprintAlpha, setFootprintAlpha] = useState(DEFAULT_FOOTPRINT_ALPHA);
+  const [tilesetAlpha, setTilesetAlpha] = useState(DEFAULT_TILESET_ALPHA);
+  const [selectedEntity, setSelectedEntity] = useState(null);
+  const [clipPolygons, setClipPolygons] = useState(null);
+  const [footprintSrc, setFootprintSrc] = useState(sample_buildings_src);
+  const [isLoadingFootprints, setIsLoadingFootprints] = useState(true);
 
-  const viewerRef = useRef(null);
   //const tilesetRef = useRef(null);
   const [footprints, setFootprints] = useState(null);
   const [propertyKeys, setPropertyKeys] = useState(null);
@@ -63,14 +75,24 @@ function App() {
   // Buffer the GeoJSON geometry
   // const bufferedGeoJson = buffer(sample_buildings_src, 100, { units: "meters" });
 
-  function handleClick(event) {
-    console.log("pickedFeature", viewerRef);
-    const scene = viewerRef.current.cesiumElement.scene;
-    const pickedFeature = scene.pick(event.position);
-    if (pickedFeature) {
-      pickedFeature.color = Color.RED.withAlpha(0.5);
+  const getMaterial = (entity, alpha) => {
+    const str = entity.properties[selectedProperty].toString();
+    const colorHexKey = colorHash.hex(str).substring(1); // remove # from the beginning
+
+    // If the material doesn't exist yet, create it
+    if (!materialLookup[colorHexKey]) {
+      const [r, g, b] = colorHash.rgb(str);
+      materialLookup[colorHexKey] = new Color(
+        r / 255,
+        g / 255,
+        b / 255,
+        1 // Initial alpha value
+      );
     }
-  }
+
+    // Return the material with the new transparency
+    return Color.fromAlpha(materialLookup[colorHexKey], alpha);
+  };
 
   useEffect(() => {
     // list unique property keys available in the GeoJsonDataSource
@@ -85,31 +107,57 @@ function App() {
   }, [footprints]);
 
   useEffect(() => {
+    setIsLoadingFootprints(true); // Set loading to true when footprintSrc changes
+  }, [footprintSrc]);
+
+  useEffect(() => {
+    if (!isLoadingFootprints && footprints) {
+      footprints.entities.values.forEach((entity) => {
+        entity.polygon.material = getMaterial(entity, footprintAlpha);
+        entity.polygon.classificationType = ClassificationType.BOTH;
+        entity.polygon.shadows = ShadowMode.ENABLED;
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [footprintAlpha, selectedProperty, footprints, isLoadingFootprints]);
+
+  // Create clipping polygons from the footprints
+  /*
+  useEffect(() => {
+    if (footprints) {
+      const polygons = footprints.entities.values.map((entity) => {
+        const positions = entity.polygon.hierarchy.getValue().positions;
+        //return new Cesium.ClippingPolygon({ positions: positions });
+      });
+      setClipPolygons(
+        //new Cesium.ClippingPolygonCollection({polygons: polygons, })
+      );
+    }
+  }, [footprints]);
+  */
+
+  useEffect(() => {
+    // console.log("selectedEntity", selectedEntity);
     footprints &&
       footprints.entities.values.forEach((entity) => {
         // Get the property you want to base the color on
-        const property = entity.properties[selectedProperty].toString();
         // Determine the color based on the property
-        let color = colorHash.rgb(property);
-
-        // If the material doesn't exist yet, create it
-        if (!materialLookup[property]) {
-          const [r, g, b] = color;
-          materialLookup[property] = new Color(
-            r / 255,
-            g / 255,
-            b / 255,
-            1 // Initial alpha value
-          );
-        }
         // Update the material with the new transparency
-        entity.polygon.material = Color.fromAlpha(
-          materialLookup[property],
-          transparency
-        );
+        if (entity.id === selectedEntity.id) {
+          //console.log("selectedEntity", ty);
+
+          entity.polygon.material = HIGHLIGHT_COLOR.withAlpha(
+            HIGHLIGHT_COLOR_ALPHA
+          );
+          entity.polygon.outline = true;
+          entity.polygon.outlineColor = Color.RED;
+          entity.polygon.outlineWidth = 20.0;
+        } else {
+          entity.polygon.material = getMaterial(entity, footprintAlpha);
+        }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [transparency, selectedProperty, footprints]);
+  }, [selectedEntity]);
 
   return (
     <div className="App">
@@ -145,28 +193,55 @@ function App() {
               min={0}
               max={1}
               step={0.01}
-              value={transparency}
+              value={footprintAlpha}
               onChange={(event) =>
-                setTransparency(parseFloat(event.target.value))
+                setFootprintAlpha(parseFloat(event.target.value))
               }
             />
+            <div>
+              {" "}
+              <hr />
+              <input
+                type="radio"
+                id="unbuffered"
+                name="sourceFile"
+                value={sample_buildings_src}
+                checked={footprintSrc === sample_buildings_src}
+                onChange={(e) => setFootprintSrc(e.target.value)}
+              />
+              <label htmlFor="unbuffered">Unbuffered</label>
+              <input
+                type="radio"
+                id="buffered"
+                name="sourceFile"
+                value={sample_buildings_src_buffered}
+                checked={footprintSrc === sample_buildings_src_buffered}
+                onChange={(e) => setFootprintSrc(e.target.value)}
+              />
+              <label htmlFor="buffered">Buffered</label>
+            </div>
           </div>
         </ControlContainer>
-        <ScreenSpaceEventHandler>
-          <ScreenSpaceEvent
-            action={handleClick}
-            type={ScreenSpaceEventType.LEFT_CLICK}
-          />
-        </ScreenSpaceEventHandler>
         <Cesium3DTileset
           modelMatrix={modelMatrix}
           url={"https://wupp-3d-data.cismet.de/mesh/tileset.json"}
+          clippingPolygons={clipPolygons}
         />
         <GeoJsonDataSource
-          data={sample_buildings_src}
+          data={footprintSrc}
           clampToGround={true}
+          elevation={100}
           onLoad={(dataSource) => {
             dataSource && setFootprints(dataSource);
+            setIsLoadingFootprints(false);
+          }}
+          onClick={(movementEvent, target) => {
+            console.log("pickedFeature", target.id);
+            if (target.id) {
+              setSelectedEntity(target.id);
+            } else {
+              setSelectedEntity(null);
+            }
           }}
         />
       </CesiumView>
