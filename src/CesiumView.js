@@ -39,7 +39,8 @@ function CesiumView(props) {
       initializeCesium(viewer, props, home, props.postInit);
       unlockPosition(viewer);
     }
-  }, [viewerRef, home, props]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewerRef]);
 
   return (
     <div className="App">()

@@ -28,6 +28,8 @@ import ZoomControls from "./components/controls/ZoomControls";
 const home = Cartesian3.fromDegrees(7.20009, 51.272034, 150);
 const sample_buildings_src = "dataSamples/buildings.json";
 const sample_buildings_src_buffered = "dataSamples/buildings_buffered_1m.json";
+const sample_buildings_src_voronoi = "dataSamples/buildings_voronoi_buffered_2m.json";
+
 const DEFAULT_FOOTPRINT_ALPHA = 0.7;
 const DEFAULT_TILESET_ALPHA = 0.7;
 const HIGHLIGHT_COLOR = Color.YELLOW;
@@ -137,15 +139,12 @@ function App() {
   */
 
   useEffect(() => {
-    // console.log("selectedEntity", selectedEntity);
     footprints &&
       footprints.entities.values.forEach((entity) => {
         // Get the property you want to base the color on
         // Determine the color based on the property
         // Update the material with the new transparency
         if (entity.id === selectedEntity.id) {
-          //console.log("selectedEntity", ty);
-
           entity.polygon.material = HIGHLIGHT_COLOR.withAlpha(
             HIGHLIGHT_COLOR_ALPHA
           );
@@ -209,7 +208,7 @@ function App() {
                 checked={footprintSrc === sample_buildings_src}
                 onChange={(e) => setFootprintSrc(e.target.value)}
               />
-              <label htmlFor="unbuffered">Unbuffered</label>
+              <label htmlFor="unbuffered">0m</label>
               <input
                 type="radio"
                 id="buffered"
@@ -218,7 +217,16 @@ function App() {
                 checked={footprintSrc === sample_buildings_src_buffered}
                 onChange={(e) => setFootprintSrc(e.target.value)}
               />
-              <label htmlFor="buffered">Buffered</label>
+              <label htmlFor="buffered">1m</label>
+              <input
+                type="radio"
+                id="vbuffered"
+                name="sourceFile"
+                value={sample_buildings_src_voronoi}
+                checked={footprintSrc === sample_buildings_src_voronoi}
+                onChange={(e) => setFootprintSrc(e.target.value)}
+              />
+              <label htmlFor="vbuffered">2m Voronoi</label>
             </div>
           </div>
         </ControlContainer>
