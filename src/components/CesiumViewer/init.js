@@ -1,10 +1,7 @@
-import { CesiumTerrainProvider, Color } from "cesium";
+import { Color } from "cesium";
 import * as Cesium from "cesium";
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 
 import "leaflet/dist/leaflet.css";
-// export const mapProjection = new Cesium.WebMercatorProjection();
 
 export const initializeCesium = (
   viewer,
@@ -29,7 +26,7 @@ export const initializeCesium = (
     url: "https://cesium-wupp-terrain.cismet.de/terrain2020",
     format: "image/png",
   });
-*/
+
 
   const wuppOrtho = new Cesium.WebMapServiceImageryProvider({
     url: "https://maps.wuppertal.de/karten",
@@ -38,6 +35,7 @@ export const initializeCesium = (
     enablePickFeatures: false,
     //tilingScheme: new Cesium.WebMercatorTilingScheme(),
   });
+  */
 
   viewer.scene.globe.baseColor = Cesium.Color.BLACK;
   //viewer.mapProjection = mapProjection;

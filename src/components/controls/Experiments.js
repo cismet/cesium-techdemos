@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Cesium from "cesium";
 import { useCesium } from "resium";
-import { unlockPosition } from "../../tools/position";
+import { unlockPosition } from "../CesiumViewer/position";
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 const Experiments = (props) => {

@@ -1,18 +1,14 @@
 import * as Cesium from "cesium";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Viewer } from "resium";
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 
-import "./App.css";
 import "leaflet-fullscreen-custom-container-fork";
 import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
-// import IonResource from "cesium/Source/Core/IonResource";
 
 import "leaflet/dist/leaflet.css";
-import { unlockPosition } from "./tools/position";
-import Cross from "./components/Cross";
-import { initializeCesium } from "./tools/init";
+import { unlockPosition } from "./position";
+import Cross from "../Cross";
+import { initializeCesium } from "./init";
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
@@ -26,7 +22,7 @@ function useWindowSize() {
   }, []);
   return { width: size[0], height: size[1] };
 }
-function CesiumView(props) {
+function CesiumViewer(props) {
   const windowSize = useWindowSize();
 
   const home =
@@ -34,7 +30,7 @@ function CesiumView(props) {
   const viewerRef = useRef(null);
 
   useEffect(() => {
-   if (viewerRef?.current?.cesiumElement) {
+    if (viewerRef?.current?.cesiumElement) {
       const viewer = viewerRef.current.cesiumElement; // is Cesium's Viewer
       initializeCesium(viewer, props, home, props.postInit);
       unlockPosition(viewer);
@@ -43,7 +39,8 @@ function CesiumView(props) {
   }, [viewerRef]);
 
   return (
-    <div className="App">()
+    <div className="App">
+      ()
       <Viewer
         ref={viewerRef}
         timeline={false}
@@ -68,4 +65,4 @@ function CesiumView(props) {
   );
 }
 
-export default CesiumView;
+export default CesiumViewer;

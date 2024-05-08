@@ -2,7 +2,7 @@ import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import { useCesium } from "resium";
-import { lockPosition, unlockPosition } from "../../tools/position";
+import { lockPosition, unlockPosition } from "../CesiumViewer/position";
 import OnMapButton from "./OnMapButton";
 
 const SpinningControl = (props) => {

@@ -1,29 +1,27 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import "./App.css";
 import "leaflet-fullscreen-custom-container-fork";
 import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
 // import IonResource from "cesium/Source/Core/IonResource";
 
 import "leaflet/dist/leaflet.css";
-import CesiumView from "./CesiumView";
+import CesiumViewer from "../components/CesiumViewer";
 import { Cesium3DTileset } from "resium";
-import Cartesian3 from "cesium/Source/Core/Cartesian3";
-import Matrix4 from "cesium/Source/Core/Matrix4";
+import { Cartesian3, Matrix4 } from "cesium";
 import { useLayoutEffect, useRef, useState } from "react";
-import Cross from "./components/Cross";
-import ControlContainer from "./components/controls/ControlContainer";
-import OnMapButton from "./components/controls/OnMapButton";
+import Cross from "../components/Cross";
+import ControlContainer from "../components/controls/ControlContainer";
+import OnMapButton from "../components/controls/OnMapButton";
 import { faBars, faCube, faSquare } from "@fortawesome/free-solid-svg-icons";
-import Home from "./components/controls/Home";
-import SpinningControl from "./components/controls/SpinningControl";
-import FullScreenMode from "./components/controls/FullscreenMode";
-import LockCenterControl from "./components/controls/LockCenterControl";
-import DebugInfo from "./components/controls/DebugInfo";
-import Experiments from "./components/controls/Experiments";
+import Home from "../components/controls/Home";
+import SpinningControl from "../components/controls/SpinningControl";
+import FullScreenMode from "../components/controls/FullscreenMode";
+import LockCenterControl from "../components/controls/LockCenterControl";
+import DebugInfo from "../components/controls/DebugInfo";
+import Experiments from "../components/controls/Experiments";
 import * as Cesium from "cesium";
-import ZoomControls from "./components/controls/ZoomControls";
+import ZoomControls from "../components/controls/ZoomControls";
 
 const home = Cesium.Cartesian3.fromDegrees(7.20009, 51.272034, 150);
 
@@ -52,35 +50,7 @@ function App() {
   const modelMatrix = Matrix4.fromTranslation(translation);
   return (
     <div className="App">
-      <CesiumView
-        minZoom={300}
-        postInit={(viewer) => {
-          var promise = Cesium.GeoJsonDataSource.load("/data/neubauWH.json", {
-            clampToGround: true,
-          });
-          promise.then(function (dataSource) {
-            console.log("neubau", dataSource);
-            // dataSource.clampToGround = true;
-            viewer.dataSources.add(dataSource);
-
-            var entities = dataSource.entities.values;
-            for (var i = 0; i < entities.length; i++) {
-              var entity = entities[i];
-              console.log("entity", entity);
-
-              //Extrude the polygon based on any attribute you desire
-              entity.polygon.extrudedHeight = 160 + 25; //entity.properties.parent_id;
-              entity.polygon.classificationType =
-                Cesium.ClassificationType.CESIUM_3D_TILE;
-              entity.polygon.outline = false;
-              entity.polygoin.clampToGround = true;
-              entity.polygon.material = Cesium.Color.fromRandom({
-                alpha: 0.6,
-              });
-            }
-          });
-        }}
-      >
+      <CesiumViewer>
         <ControlContainer position="topright">
           <OnMapButton icon={faBars} />
         </ControlContainer>
@@ -90,9 +60,30 @@ function App() {
           <Home home={home} />
           <SpinningControl />
 
+          {!meshVisible && (
+            <OnMapButton
+              onClick={() => setMeshVisible(true)}
+              title="3D Mesh anzeigen"
+              icon={faCube}
+            ></OnMapButton>
+          )}
+          {meshVisible && (
+            <OnMapButton
+              onClick={() => setMeshVisible(false)}
+              title="3D Mesh ausblenden"
+              icon={faSquare}
+            ></OnMapButton>
+          )}
+          <FullScreenMode />
           <LockCenterControl />
-        </ControlContainer>
 
+          {dev && (
+            <>
+              <DebugInfo />
+              <Experiments tilesetRef={tilesetRef} />
+            </>
+          )}
+        </ControlContainer>
         {meshVisible && (
           <Cesium3DTileset
             ref={tilesetRef}
@@ -105,18 +96,12 @@ function App() {
             //debugColorizeTiles={true}
             scene3DOnly={true}
             url={"https://wupp-3d-data.cismet.de/mesh/tileset.json"}
-            onAllTilesLoad={() => {
-              const tileset = tilesetRef.current.cesiumElement;
-              console.log("onAllTilesLoad", tilesetRef.current);
-              // // Wait for the tileset to be ready
-              tileset.readyPromise.then(function () {
-                // Wait for the data source to load
-                console.log("xxx tileset ready");
-              });
+            onClick={(movement, target) => {
+              console.log("movement,target", { movement, target });
             }}
           />
         )}
-      </CesiumView>
+      </CesiumViewer>
       <Cross windowSize={windowSize} />
     </div>
   );

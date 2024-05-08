@@ -1,7 +1,7 @@
 import { useCesium } from "resium";
 import OnMapButton from "./OnMapButton";
 import * as Cesium from "cesium";
-import { unlockPosition } from "../../tools/position";
+import { unlockPosition } from "../CesiumViewer/position";
 import { faHouseUser } from "@fortawesome/free-solid-svg-icons";
 const Home = (props) => {
   const { home } = props;

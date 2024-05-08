@@ -1,8 +1,7 @@
-import "./App.css";
 import "leaflet-fullscreen-custom-container-fork";
 import "leaflet-fullscreen-custom-container-fork/dist/leaflet.fullscreen.css";
 import "leaflet/dist/leaflet.css";
-import CesiumView from "./CesiumView";
+import CesiumViewer from "../components/CesiumViewer";
 import ColorHash from "color-hash";
 import { Cesium3DTileset, GeoJsonDataSource } from "resium";
 import {
@@ -12,15 +11,15 @@ import {
   ShadowMode,
   ClassificationType,
 } from "cesium";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Cross from "./components/Cross";
-import ControlContainer from "./components/controls/ControlContainer";
-import OnMapButton from "./components/controls/OnMapButton";
+import { useEffect, useLayoutEffect, useState } from "react";
+import Cross from "../components/Cross";
+import ControlContainer from "../components/controls/ControlContainer";
+import OnMapButton from "../components/controls/OnMapButton";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import Home from "./components/controls/Home";
-import SpinningControl from "./components/controls/SpinningControl";
-import LockCenterControl from "./components/controls/LockCenterControl";
-import ZoomControls from "./components/controls/ZoomControls";
+import Home from "../components/controls/Home";
+import SpinningControl from "../components/controls/SpinningControl";
+import LockCenterControl from "../components/controls/LockCenterControl";
+import ZoomControls from "../components/controls/ZoomControls";
 //import buffer from "@turf/buffer";
 
 /* eslint-disable jsx-a11y/anchor-has-content */
@@ -123,20 +122,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [footprintAlpha, selectedProperty, footprints, isLoadingFootprints]);
 
-  // Create clipping polygons from the footprints
-  /*
-  useEffect(() => {
-    if (footprints) {
-      const polygons = footprints.entities.values.map((entity) => {
-        const positions = entity.polygon.hierarchy.getValue().positions;
-        //return new Cesium.ClippingPolygon({ positions: positions });
-      });
-      setClipPolygons(
-        //new Cesium.ClippingPolygonCollection({polygons: polygons, })
-      );
-    }
-  }, [footprints]);
-  */
+
 
   useEffect(() => {
     footprints &&
@@ -160,7 +146,7 @@ function App() {
 
   return (
     <div className="App">
-      <CesiumView disableZoomRestrictions={true} minZoom={300}>
+      <CesiumViewer disableZoomRestrictions={true} minZoom={300}>
         <ControlContainer position="topright">
           <OnMapButton icon={faBars} />
         </ControlContainer>
@@ -252,7 +238,7 @@ function App() {
             }
           }}
         />
-      </CesiumView>
+      </CesiumViewer>
       <Cross windowSize={windowSize} />
     </div>
   );
